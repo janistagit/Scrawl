@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
@@ -96,11 +96,32 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Scrawl',
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
+              ),
             ),
-            Text(
+            /*Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),*/
+            const SizedBox(height: 35),
+            FilledButton(
+              onPressed: () {},
+              child: const Text('Generate Idea',
+                style: TextStyle(
+                fontSize: 20.0, // insert your font size here
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            FilledButton(
+              onPressed: () {},
+              child: const Text('View Gallery',
+                style: TextStyle(
+                  fontSize: 20.0, // insert your font size here
+                ),
+              ),
             ),
           ],
         ),
