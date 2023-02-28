@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scrawl/generator_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -107,7 +108,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),*/
             const SizedBox(height: 35),
             FilledButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyGeneratePage(title: "Generator Page")));
+              },
               child: const Text('Generate Idea',
                 style: TextStyle(
                 fontSize: 20.0, // insert your font size here

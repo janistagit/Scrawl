@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class MyGeneratePage extends StatefulWidget {
   const MyGeneratePage({super.key, required this.title});
@@ -30,6 +31,41 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  Timer _timer = Timer(const Duration(seconds: 10), () => null);
+  int _start = 10;
+  bool countdownComplete = true;
+
+  void startTimer() {
+    //_start = 10;
+    const oneSec = Duration(seconds: 1);
+    if (_timer != null) {
+      _timer.cancel();
+      _start = 10;
+      countdownComplete = false;
+    }
+    _timer = Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+            countdownComplete = true;
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -67,12 +103,32 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'Draw:',
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
+              ),
             ),
-            Text(
-              '$_counter',
+            /*Text(
+              '(Generated Idea Here)',
               style: Theme.of(context).textTheme.headlineMedium,
+            ), */
+            const SizedBox(height: 15),
+            FilledButton(
+              onPressed: () {
+                countdownComplete ? startTimer() : null;
+              },
+              child: const Text('Generate',
+                style: TextStyle(
+                  fontSize: 20.0, // insert your font size here
+                ),
+              ),
             ),
+            const SizedBox(height: 15),
+            Text("$_start",
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
+              ),
+            )
           ],
         ),
       ),
