@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:math';
+import 'package:english_words/english_words.dart';
 
 class MyGeneratePage extends StatefulWidget {
   const MyGeneratePage({super.key, required this.title});
@@ -20,16 +22,20 @@ class MyGeneratePage extends StatefulWidget {
 }
 
 class _MyGeneratePageState extends State<MyGeneratePage> {
-  int _counter = 0;
+  //int _counter = 0;
+  String _idea = "";
 
-  void _incrementCounter() {
+  void generateIdea() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      final _random = new Random();
+      String adj = adjectives[_random.nextInt(adjectives.length)];
+      String noun = nouns[_random.nextInt(nouns.length)];
+      _idea = adj + " " + noun;
     });
   }
 
@@ -108,6 +114,12 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
                 fontSize: 35.0, // insert your font size here
               ),
             ),
+             Text(
+              _idea,
+               style: TextStyle(
+                 fontSize: 35.0, // insert your font size here
+               ),
+            ),
             /*Text(
               '(Generated Idea Here)',
               style: Theme.of(context).textTheme.headlineMedium,
@@ -116,6 +128,7 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
             FilledButton(
               onPressed: () {
                 countdownComplete ? startTimer() : null;
+                generateIdea();
               },
               child: const Text('Generate',
                 style: TextStyle(
@@ -132,11 +145,11 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      /* floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), */ // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
