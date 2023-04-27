@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scrawl/generator_page.dart';
+import 'package:scrawl/ideas.dart';
 
 void main() {
   runApp(const MyApp());
@@ -111,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyGeneratePage(title: "Generator Page")));
               },
-              child: const Text('Generate Idea',
+              child: const Text('Timed Random Practice',
                 style: TextStyle(
                 fontSize: 20.0, // insert your font size here
                 ),
@@ -119,8 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 15),
             FilledButton(
-              onPressed: () {},
-              child: const Text('View Gallery',
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyIdeaPage(title: "Idea Category Page")));
+              },
+              child: const Text('Generate Ideas',
                 style: TextStyle(
                   fontSize: 20.0, // insert your font size here
                 ),

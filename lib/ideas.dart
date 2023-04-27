@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
+import 'package:scrawl/animals.dart';
 
-class MyGeneratePage extends StatefulWidget {
-  const MyGeneratePage({super.key, required this.title});
+class MyIdeaPage extends StatefulWidget {
+  const MyIdeaPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -18,10 +19,10 @@ class MyGeneratePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyGeneratePage> createState() => _MyGeneratePageState();
+  State<MyIdeaPage> createState() => _MyIdeaPageState();
 }
 
-class _MyGeneratePageState extends State<MyGeneratePage> {
+class _MyIdeaPageState extends State<MyIdeaPage> {
   //int _counter = 0;
   String _idea = "";
 
@@ -109,16 +110,21 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Draw:',
+              'Categories',
               style: TextStyle(
                 fontSize: 35.0, // insert your font size here
               ),
             ),
-             Text(
-              _idea,
-               style: TextStyle(
-                 fontSize: 35.0, // insert your font size here
-               ),
+            const SizedBox(height: 35),
+            FilledButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyAnimalPage(title: "Animal Ideas Page")));
+              },
+              child: const Text('Animals',
+                style: TextStyle(
+                  fontSize: 20.0, // insert your font size here
+                ),
+              ),
             ),
             /*Text(
               '(Generated Idea Here)',
@@ -127,21 +133,24 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
             const SizedBox(height: 15),
             FilledButton(
               onPressed: () {
-                countdownComplete ? generateIdea() : null;
                 countdownComplete ? startTimer() : null;
+                generateIdea();
               },
-              child: const Text('Generate',
+              child: const Text('Characters',
                 style: TextStyle(
                   fontSize: 20.0, // insert your font size here
                 ),
               ),
             ),
-            const SizedBox(height: 15),
-            Text("$_start",
-              style: TextStyle(
-                fontSize: 35.0, // insert your font size here
+                                                                                    const SizedBox(height: 15),
+            FilledButton(
+              onPressed: () {},
+              child: const Text('Objects',
+                style: TextStyle(
+                  fontSize: 20.0, // insert your font size here
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

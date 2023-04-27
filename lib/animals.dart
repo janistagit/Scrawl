@@ -3,8 +3,8 @@ import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
 
-class MyGeneratePage extends StatefulWidget {
-  const MyGeneratePage({super.key, required this.title});
+class MyAnimalPage extends StatefulWidget {
+  const MyAnimalPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -18,12 +18,21 @@ class MyGeneratePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyGeneratePage> createState() => _MyGeneratePageState();
+  State<MyAnimalPage> createState() => _MyAnimalPageState();
 }
 
-class _MyGeneratePageState extends State<MyGeneratePage> {
+class _MyAnimalPageState extends State<MyAnimalPage> {
   //int _counter = 0;
   String _idea = "";
+  static const List<String> animalWords = [
+    "squirrel", "dog", "cat", "lion", "tiger", "axolotl", "antelope", "aardvark",
+    "cheetah", "narwhal", "whale", "catfish", "locust", "cricket", "bee", "snail",
+    "wolf", "rat", "weasel", "woodpecker", "sparrow", "crow", "penguin", "butterfly",
+    "frog", "elephant", "zebra", "gazelle", "rabbit", "deer", "snake", "porcupine",
+    "tuna", "tortoise", "mouse", "parrot", "alligator", "crocodile", "eagle",
+    "horse", "lobster", "crab", "horse", "shrimp", "panda", "polar bear", "seal",
+    "lizard", "otter", "buffalo"
+  ];
 
   void generateIdea() {
     setState(() {
@@ -34,8 +43,8 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
       // called again, and so nothing would appear to happen.
       final _random = new Random();
       String adj = adjectives[_random.nextInt(adjectives.length)];
-      String noun = nouns[_random.nextInt(nouns.length)];
-      _idea = adj + " " + noun;
+      String animal = animalWords[_random.nextInt(animalWords.length)];
+      _idea = adj + " " + animal;
     });
   }
 
@@ -114,11 +123,11 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
                 fontSize: 35.0, // insert your font size here
               ),
             ),
-             Text(
+            Text(
               _idea,
-               style: TextStyle(
-                 fontSize: 35.0, // insert your font size here
-               ),
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
+              ),
             ),
             /*Text(
               '(Generated Idea Here)',
