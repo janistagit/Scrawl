@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
-import 'package:scrawl/animals.dart';
-import 'package:scrawl/characters.dart';
-import 'package:scrawl/objects.dart';
 
-class MyIdeaPage extends StatefulWidget {
-  const MyIdeaPage({super.key, required this.title});
+class MyObjectPage extends StatefulWidget {
+  const MyObjectPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -21,12 +18,21 @@ class MyIdeaPage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyIdeaPage> createState() => _MyIdeaPageState();
+  State<MyObjectPage> createState() => _MyObjectPageState();
 }
 
-class _MyIdeaPageState extends State<MyIdeaPage> {
+class _MyObjectPageState extends State<MyObjectPage> {
   //int _counter = 0;
   String _idea = "";
+  static const List<String> items = [
+    "sword", "book", "staff", "knife", "fruit", "bottle", "doll", "hat",
+    "flower", "house", "castle", "computer", "tree", "cloud", "planet", "vehicle",
+    "pastry", "vegetable", "vase", "hand", "robot", "jacket", "closet", "bedroom",
+    "drink", "dessert", "spaceship", "cottage", "boot", "park", "beach", "forest",
+    "mountain", "camera", "instrument", "shrubs", "cactus", "construction", "shoes",
+    "snack", "photo", "game", "gem", "alien", "shield", "gun", "mask",
+    "phone", "restaurant", "mushroom"
+  ];
 
   void generateIdea() {
     setState(() {
@@ -37,13 +43,14 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
       // called again, and so nothing would appear to happen.
       final _random = new Random();
       String adj = adjectives[_random.nextInt(adjectives.length)];
-      String noun = nouns[_random.nextInt(nouns.length)];
-      _idea = adj + " " + noun;
+      String item = items[_random.nextInt(items.length)];
+      _idea = adj + " " + item;
     });
   }
 
   Timer _timer = Timer(const Duration(seconds: 10), () => null);
-  int _start = 10;
+  int _start = 0;
+  int _min = 0;
   bool countdownComplete = true;
 
   void startTimer() {
@@ -51,7 +58,8 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
-      _start = 10;
+      _start = 120;
+      _min = (_start/60).truncate();
       countdownComplete = false;
     }
     _timer = Timer.periodic(
@@ -65,6 +73,7 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
         } else {
           setState(() {
             _start--;
+            _min = (_start/60).truncate();
           });
         }
       },
@@ -76,6 +85,8 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
     _timer.cancel();
     super.dispose();
   }
+
+  String intFixed(int n, int count) => n.toString().padLeft(count, "0");
 
   @override
   Widget build(BuildContext context) {
@@ -112,20 +123,15 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Categories',
+              'Draw:',
               style: TextStyle(
                 fontSize: 35.0, // insert your font size here
               ),
             ),
-            const SizedBox(height: 35),
-            FilledButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyAnimalPage(title: "Animal Ideas Page")));
-              },
-              child: const Text('Animals',
-                style: TextStyle(
-                  fontSize: 20.0, // insert your font size here
-                ),
+            Text(
+              _idea,
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
               ),
             ),
             /*Text(
@@ -135,25 +141,21 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
             const SizedBox(height: 15),
             FilledButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyCharacterPage(title: "Character Ideas Page")));
+                countdownComplete ? generateIdea() : null;
+                countdownComplete ? startTimer() : null;
               },
-              child: const Text('Characters',
+              child: const Text('Generate',
                 style: TextStyle(
                   fontSize: 20.0, // insert your font size here
                 ),
               ),
             ),
-                                                                                    const SizedBox(height: 15),
-            FilledButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyObjectPage(title: "Object Ideas Page")));
-              },
-              child: const Text('Objects',
-                style: TextStyle(
-                  fontSize: 20.0, // insert your font size here
-                ),
+            const SizedBox(height: 15),
+            Text(intFixed(_min, 2) + ":" + intFixed(_start%60, 2),
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
               ),
-            ),
+            )
           ],
         ),
       ),
