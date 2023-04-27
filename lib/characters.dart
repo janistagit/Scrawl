@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
-import 'package:scrawl/animals.dart';
-import 'package:scrawl/characters.dart';
 
-class MyIdeaPage extends StatefulWidget {
-  const MyIdeaPage({super.key, required this.title});
+class MyCharacterPage extends StatefulWidget {
+  const MyCharacterPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -20,12 +18,21 @@ class MyIdeaPage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyIdeaPage> createState() => _MyIdeaPageState();
+  State<MyCharacterPage> createState() => _MyCharacterPageState();
 }
 
-class _MyIdeaPageState extends State<MyIdeaPage> {
+class _MyCharacterPageState extends State<MyCharacterPage> {
   //int _counter = 0;
   String _idea = "";
+  static const List<String> characters = [
+    "fairy", "wizard", "knight", "dragon", "farmer", "cowboy", "archer", "mage",
+    "bandit", "assassin", "queen", "king", "princess", "prince", "warrior", "scholar",
+    "medic", "student", "witch", "druid", "summoner", "spy", "healer", "thief",
+    "magical girl", "cleric", "chef", "engineer", "sniper", "hero", "singer", "maid",
+    "necromancer", "mermaid", "harpy", "zombie", "paladin", "bard", "astrologer",
+    "pirate", "librarian", "artist", "ninja", "lawyer", "guard", "bartender", "dancer",
+    "swordsman", "scientist", "musician"
+  ];
 
   void generateIdea() {
     setState(() {
@@ -36,8 +43,8 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
       // called again, and so nothing would appear to happen.
       final _random = new Random();
       String adj = adjectives[_random.nextInt(adjectives.length)];
-      String noun = nouns[_random.nextInt(nouns.length)];
-      _idea = adj + " " + noun;
+      String character = characters[_random.nextInt(characters.length)];
+      _idea = adj + " " + character;
     });
   }
 
@@ -111,20 +118,15 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'Categories',
+              'Draw:',
               style: TextStyle(
                 fontSize: 35.0, // insert your font size here
               ),
             ),
-            const SizedBox(height: 35),
-            FilledButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyAnimalPage(title: "Animal Ideas Page")));
-              },
-              child: const Text('Animals',
-                style: TextStyle(
-                  fontSize: 20.0, // insert your font size here
-                ),
+            Text(
+              _idea,
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
               ),
             ),
             /*Text(
@@ -134,23 +136,21 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
             const SizedBox(height: 15),
             FilledButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyCharacterPage(title: "Character Ideas Page")));
+                countdownComplete ? generateIdea() : null;
+                countdownComplete ? startTimer() : null;
               },
-              child: const Text('Characters',
+              child: const Text('Generate',
                 style: TextStyle(
                   fontSize: 20.0, // insert your font size here
                 ),
               ),
             ),
-                                                                                    const SizedBox(height: 15),
-            FilledButton(
-              onPressed: () {},
-              child: const Text('Objects',
-                style: TextStyle(
-                  fontSize: 20.0, // insert your font size here
-                ),
+            const SizedBox(height: 15),
+            Text("$_start",
+              style: TextStyle(
+                fontSize: 35.0, // insert your font size here
               ),
-            ),
+            )
           ],
         ),
       ),
