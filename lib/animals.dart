@@ -33,6 +33,8 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
     "horse", "lobster", "crab", "horse", "shrimp", "panda", "polar bear", "seal",
     "lizard", "otter", "buffalo"
   ];
+  int dropdownvalue = 30;
+  var items = [30, 60, 120, 300];
 
   void generateIdea() {
     setState(() {
@@ -58,7 +60,7 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
-      _start = 120;
+      _start = dropdownvalue;
       _min = (_start/60).truncate();
       countdownComplete = false;
     }
@@ -155,7 +157,36 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
               style: TextStyle(
                 fontSize: 35.0, // insert your font size here
               ),
-            )
+            ),
+            const SizedBox(height: 15),
+            DropdownButton(
+
+              // Initial Value
+              value: dropdownvalue,
+
+              // Down Arrow Icon
+              icon: const Icon(Icons.keyboard_arrow_down),
+
+              // Array list of items
+              items: items.map((int items) {
+                return DropdownMenuItem(
+                  value: items,
+                  child: Text(items.toString()),
+                );
+              }).toList(),
+              // After selecting the desired option,it will
+              // change button value to selected value
+              onChanged: (int? newValue) {
+                setState(() {
+                  dropdownvalue = newValue!;
+                  //_start = dropdownvalue;
+                });
+              },
+              style: const TextStyle(
+                fontSize: 25.0,
+                color: Colors.grey
+              ),
+            ),
           ],
         ),
       ),
