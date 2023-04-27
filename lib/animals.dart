@@ -49,7 +49,8 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
   }
 
   Timer _timer = Timer(const Duration(seconds: 10), () => null);
-  int _start = 10;
+  int _start = 0;
+  int _min = 0;
   bool countdownComplete = true;
 
   void startTimer() {
@@ -57,7 +58,8 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
-      _start = 10;
+      _start = 120;
+      _min = (_start/60).truncate();
       countdownComplete = false;
     }
     _timer = Timer.periodic(
@@ -71,6 +73,7 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
         } else {
           setState(() {
             _start--;
+            _min = (_start/60).truncate();
           });
         }
       },
@@ -82,6 +85,8 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
     _timer.cancel();
     super.dispose();
   }
+
+  String intFixed(int n, int count) => n.toString().padLeft(count, "0");
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +151,7 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
               ),
             ),
             const SizedBox(height: 15),
-            Text("$_start",
+            Text(intFixed(_min, 2) + ":" + intFixed(_start%60, 2),
               style: TextStyle(
                 fontSize: 35.0, // insert your font size here
               ),
