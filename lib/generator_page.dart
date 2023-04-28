@@ -131,6 +131,15 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
             ), */
             const SizedBox(height: 15),
             FilledButton(
+              style:
+              ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith((states) {
+                    // If the button is pressed, return grey, otherwise purple
+                    if (!countdownComplete) {
+                      return Colors.grey;
+                    }
+                    return Colors.deepPurple;
+                  })),
               onPressed: () {
                 countdownComplete ? generateIdea() : null;
                 countdownComplete ? startTimer() : null;
