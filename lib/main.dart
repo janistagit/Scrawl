@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyGeneratePage(title: "Generator Page")));
               },
-              child: const Text('Timed Random Practice',
+              child: const Text('Random Time Practice',
                 style: TextStyle(
                 fontSize: 20.0, // insert your font size here
                 ),
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyIdeaPage(title: "Idea Category Page")));
               },
-              child: const Text('Generate Ideas',
+              child: const Text('Casual Practice',
                 style: TextStyle(
                   fontSize: 20.0, // insert your font size here
                 ),
