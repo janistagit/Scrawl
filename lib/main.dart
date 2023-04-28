@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scrawl/generator_page.dart';
 import 'package:scrawl/ideas.dart';
+import 'package:camera/camera.dart';
 
 void main() {
   runApp(const MyApp());

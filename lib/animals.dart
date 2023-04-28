@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
+import 'package:camera/camera.dart';
 
 class MyAnimalPage extends StatefulWidget {
   const MyAnimalPage({super.key, required this.title});
