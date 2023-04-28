@@ -35,6 +35,12 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
   ];
   int dropdownvalue = 30;
   var items = [30, 60, 120, 300];
+  Map<int, String> duration() => {
+    30: "30 sec",
+    60: "1 min",
+    120: "2 min",
+    300: "5 min"
+  };
 
   void generateIdea() {
     setState(() {
@@ -142,6 +148,15 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
             ), */
             const SizedBox(height: 15),
             FilledButton(
+              style:
+              ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  // If the button is pressed, return grey, otherwise purple
+                  if (!countdownComplete) {
+                    return Colors.grey;
+                  }
+                  return Colors.deepPurple;
+                })),
               onPressed: () {
                 countdownComplete ? generateIdea() : null;
                 countdownComplete ? startTimer() : null;
@@ -179,7 +194,6 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
               onChanged: (int? newValue) {
                 setState(() {
                   dropdownvalue = newValue!;
-                  //_start = dropdownvalue;
                 });
               },
               style: const TextStyle(
