@@ -66,7 +66,7 @@ class _MyObjectPageState extends State<MyObjectPage> {
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
-      _start = 120;
+      _start = dropdownvalue;
       _min = (_start/60).truncate();
       countdownComplete = false;
     }
