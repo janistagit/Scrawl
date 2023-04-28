@@ -198,7 +198,7 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
               },
               style: const TextStyle(
                   fontSize: 25.0,
-                  color: Colors.grey
+                  color: Colors.blueGrey
               ),
             ),
           ],

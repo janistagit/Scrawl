@@ -198,7 +198,7 @@ class _MyObjectPageState extends State<MyObjectPage> {
               },
               style: const TextStyle(
                   fontSize: 25.0,
-                  color: Colors.grey
+                  color: Colors.blueGrey
               ),
             ),
           ],

@@ -198,7 +198,7 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
               },
               style: const TextStyle(
                 fontSize: 25.0,
-                color: Colors.grey
+                color: Colors.blueGrey
               ),
             ),
           ],
