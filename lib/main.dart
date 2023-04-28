@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scrawl/generator_page.dart';
 import 'package:scrawl/ideas.dart';
-import 'package:camera/camera.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
   // can be called before `runApp()`
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
 
   runApp(const MyApp());
 }
@@ -24,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Scrawl',
       theme: ThemeData(
         // This is the theme of your application.
         //

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
-import 'package:camera/camera.dart';
 
 class MyCharacterPage extends StatefulWidget {
   const MyCharacterPage({super.key, required this.title});

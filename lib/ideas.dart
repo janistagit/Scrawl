@@ -5,7 +5,6 @@ import 'package:english_words/english_words.dart';
 import 'package:scrawl/animals.dart';
 import 'package:scrawl/characters.dart';
 import 'package:scrawl/objects.dart';
-import 'package:camera/camera.dart';
 
 class MyIdeaPage extends StatefulWidget {
   const MyIdeaPage({super.key, required this.title});
