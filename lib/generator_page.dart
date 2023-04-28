@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
 import 'package:camera/camera.dart';
+import 'package:scrawl/picture.dart';
 
 class MyGeneratePage extends StatefulWidget {
   const MyGeneratePage({super.key, required this.title});
@@ -45,6 +46,7 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
   int _start = 0;
   int _min = 0;
   bool countdownComplete = true;
+  bool activated = false;
 
   void startTimer() {
     //_start = 10;
@@ -82,8 +84,27 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
 
   String intFixed(int n, int count) => n.toString().padLeft(count, "0");
 
+  Future<void> _navigateToCamera(BuildContext context) async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // Obtain a list of the available cameras on the device.
+    final cameras = await availableCameras();
+
+    // Get a specific camera from the list of available cameras.
+    final firstCamera = cameras.first;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TakePictureScreen(camera:firstCamera)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    if(activated && countdownComplete){
+      _navigateToCamera(context);
+      activated = false;
+    }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -146,6 +167,7 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
               onPressed: () {
                 countdownComplete ? generateIdea() : null;
                 countdownComplete ? startTimer() : null;
+                activated = true;
               },
               child: const Text('Generate',
                 style: TextStyle(
