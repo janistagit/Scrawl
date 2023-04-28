@@ -24,6 +24,7 @@ class MyGeneratePage extends StatefulWidget {
 class _MyGeneratePageState extends State<MyGeneratePage> {
   //int _counter = 0;
   String _idea = "";
+  var items = [30, 60, 120, 300];
 
   void generateIdea() {
     setState(() {
@@ -47,9 +48,10 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
   void startTimer() {
     //_start = 10;
     const oneSec = Duration(seconds: 1);
+    final _random = new Random();
     if (_timer != null) {
       _timer.cancel();
-      _start = 120;
+      _start = items[_random.nextInt(items.length)];
       _min = (_start/60).truncate();
       countdownComplete = false;
     }
