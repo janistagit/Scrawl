@@ -24,7 +24,7 @@ class MyObjectPage extends StatefulWidget {
 class _MyObjectPageState extends State<MyObjectPage> {
   //int _counter = 0;
   String _idea = "";
-  static const List<String> items = [
+  static const List<String> prompts = [
     "sword", "book", "staff", "knife", "fruit", "bottle", "doll", "hat",
     "flower", "house", "castle", "computer", "tree", "cloud", "planet", "vehicle",
     "pastry", "vegetable", "vase", "hand", "robot", "jacket", "closet", "bedroom",
@@ -33,6 +33,14 @@ class _MyObjectPageState extends State<MyObjectPage> {
     "snack", "photo", "game", "gem", "alien", "shield", "gun", "mask",
     "phone", "restaurant", "mushroom"
   ];
+  int dropdownvalue = 30;
+  var items = [30, 60, 120, 300];
+  Map<int, String> duration() => {
+    30: "30 sec",
+    60: "1 min",
+    120: "2 min",
+    300: "5 min"
+  };
 
   void generateIdea() {
     setState(() {
@@ -43,8 +51,8 @@ class _MyObjectPageState extends State<MyObjectPage> {
       // called again, and so nothing would appear to happen.
       final _random = new Random();
       String adj = adjectives[_random.nextInt(adjectives.length)];
-      String item = items[_random.nextInt(items.length)];
-      _idea = adj + " " + item;
+      String prompt = prompts[_random.nextInt(prompts.length)];
+      _idea = adj + " " + prompt;
     });
   }
 
@@ -164,7 +172,35 @@ class _MyObjectPageState extends State<MyObjectPage> {
               style: TextStyle(
                 fontSize: 35.0, // insert your font size here
               ),
-            )
+            ),
+            const SizedBox(height: 15),
+            DropdownButton(
+
+              // Initial Value
+              value: dropdownvalue,
+
+              // Down Arrow Icon
+              icon: const Icon(Icons.keyboard_arrow_down),
+
+              // Array list of items
+              items: items.map((int items) {
+                return DropdownMenuItem(
+                  value: items,
+                  child: Text(items.toString()),
+                );
+              }).toList(),
+              // After selecting the desired option,it will
+              // change button value to selected value
+              onChanged: (int? newValue) {
+                setState(() {
+                  dropdownvalue = newValue!;
+                });
+              },
+              style: const TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.grey
+              ),
+            ),
           ],
         ),
       ),

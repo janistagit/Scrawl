@@ -33,6 +33,14 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
     "pirate", "librarian", "artist", "ninja", "lawyer", "guard", "bartender", "dancer",
     "swordsman", "scientist", "musician"
   ];
+  int dropdownvalue = 30;
+  var items = [30, 60, 120, 300];
+  Map<int, String> duration() => {
+    30: "30 sec",
+    60: "1 min",
+    120: "2 min",
+    300: "5 min"
+  };
 
   void generateIdea() {
     setState(() {
@@ -164,7 +172,35 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
               style: TextStyle(
                 fontSize: 35.0, // insert your font size here
               ),
-            )
+            ),
+            const SizedBox(height: 15),
+            DropdownButton(
+
+              // Initial Value
+              value: dropdownvalue,
+
+              // Down Arrow Icon
+              icon: const Icon(Icons.keyboard_arrow_down),
+
+              // Array list of items
+              items: items.map((int items) {
+                return DropdownMenuItem(
+                  value: items,
+                  child: Text(items.toString()),
+                );
+              }).toList(),
+              // After selecting the desired option,it will
+              // change button value to selected value
+              onChanged: (int? newValue) {
+                setState(() {
+                  dropdownvalue = newValue!;
+                });
+              },
+              style: const TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.grey
+              ),
+            ),
           ],
         ),
       ),
