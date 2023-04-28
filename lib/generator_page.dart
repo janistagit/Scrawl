@@ -24,7 +24,6 @@ class MyGeneratePage extends StatefulWidget {
 }
 
 class _MyGeneratePageState extends State<MyGeneratePage> {
-  //int _counter = 0;
   String _idea = "";
   var items = [30, 60, 120, 300];
 
@@ -49,7 +48,6 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
   bool activated = false;
 
   void startTimer() {
-    //_start = 10;
     const oneSec = Duration(seconds: 1);
     final _random = new Random();
     if (_timer != null) {
@@ -149,10 +147,6 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
                  fontSize: 35.0, // insert your font size here
                ),
             ),
-            /*Text(
-              '(Generated Idea Here)',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ), */
             const SizedBox(height: 15),
             FilledButton(
               style:
@@ -184,11 +178,6 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
           ],
         ),
       ),
-      /* floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), */ // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

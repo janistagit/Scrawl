@@ -22,7 +22,6 @@ class MyCharacterPage extends StatefulWidget {
 }
 
 class _MyCharacterPageState extends State<MyCharacterPage> {
-  //int _counter = 0;
   String _idea = "";
   static const List<String> characters = [
     "fairy", "wizard", "knight", "dragon", "farmer", "cowboy", "archer", "mage",
@@ -62,7 +61,6 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
   bool countdownComplete = true;
 
   void startTimer() {
-    //_start = 10;
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
@@ -142,10 +140,6 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
                 fontSize: 35.0, // insert your font size here
               ),
             ),
-            /*Text(
-              '(Generated Idea Here)',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ), */
             const SizedBox(height: 15),
             FilledButton(
               style:
@@ -204,11 +198,6 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
           ],
         ),
       ),
-      /* floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), */ // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

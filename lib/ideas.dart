@@ -25,7 +25,6 @@ class MyIdeaPage extends StatefulWidget {
 }
 
 class _MyIdeaPageState extends State<MyIdeaPage> {
-  //int _counter = 0;
   String _idea = "";
 
   void generateIdea() {
@@ -47,7 +46,6 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
   bool countdownComplete = true;
 
   void startTimer() {
-    //_start = 10;
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
@@ -128,10 +126,6 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
                 ),
               ),
             ),
-            /*Text(
-              '(Generated Idea Here)',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ), */
             const SizedBox(height: 15),
             FilledButton(
               onPressed: () {
@@ -157,11 +151,6 @@ class _MyIdeaPageState extends State<MyIdeaPage> {
           ],
         ),
       ),
-      /* floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), */ // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

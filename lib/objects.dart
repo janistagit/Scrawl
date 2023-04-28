@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
-import 'package:camera/camera.dart';
 
 class MyObjectPage extends StatefulWidget {
   const MyObjectPage({super.key, required this.title});
@@ -23,7 +22,6 @@ class MyObjectPage extends StatefulWidget {
 }
 
 class _MyObjectPageState extends State<MyObjectPage> {
-  //int _counter = 0;
   String _idea = "";
   static const List<String> prompts = [
     "sword", "book", "staff", "knife", "fruit", "bottle", "doll", "hat",
@@ -63,7 +61,6 @@ class _MyObjectPageState extends State<MyObjectPage> {
   bool countdownComplete = true;
 
   void startTimer() {
-    //_start = 10;
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
@@ -143,10 +140,6 @@ class _MyObjectPageState extends State<MyObjectPage> {
                 fontSize: 35.0, // insert your font size here
               ),
             ),
-            /*Text(
-              '(Generated Idea Here)',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ), */
             const SizedBox(height: 15),
             FilledButton(
               style:
@@ -205,11 +198,6 @@ class _MyObjectPageState extends State<MyObjectPage> {
           ],
         ),
       ),
-      /* floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), */ // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

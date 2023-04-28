@@ -22,7 +22,6 @@ class MyAnimalPage extends StatefulWidget {
 }
 
 class _MyAnimalPageState extends State<MyAnimalPage> {
-  //int _counter = 0;
   String _idea = "";
   static const List<String> animalWords = [
     "squirrel", "dog", "cat", "lion", "tiger", "axolotl", "antelope", "aardvark",
@@ -62,7 +61,6 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
   bool countdownComplete = true;
 
   void startTimer() {
-    //_start = 10;
     const oneSec = Duration(seconds: 1);
     if (_timer != null) {
       _timer.cancel();
@@ -142,10 +140,6 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
                 fontSize: 35.0, // insert your font size here
               ),
             ),
-            /*Text(
-              '(Generated Idea Here)',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ), */
             const SizedBox(height: 15),
             FilledButton(
               style:
@@ -204,11 +198,6 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
           ],
         ),
       ),
-      /* floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), */ // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
