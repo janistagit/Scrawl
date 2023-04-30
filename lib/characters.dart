@@ -1,7 +1,9 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
+import 'package:scrawl/picture.dart';
 
 class MyCharacterPage extends StatefulWidget {
   const MyCharacterPage({super.key, required this.title});
@@ -40,6 +42,7 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
     120: "2 min",
     300: "5 min"
   };
+  bool activated = false;
 
   void generateIdea() {
     setState(() {
@@ -94,8 +97,28 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
 
   String intFixed(int n, int count) => n.toString().padLeft(count, "0");
 
+  Future<void> _navigateToCamera(BuildContext context) async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // Obtain a list of the available cameras on the device.
+    final cameras = await availableCameras();
+
+    // Get a specific camera from the list of available cameras.
+    final firstCamera = cameras.first;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TakePictureScreen(camera:firstCamera)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    if(activated && countdownComplete){
+      _navigateToCamera(context);
+      activated = false;
+    }
+
     return Stack( // <-- STACK AS THE SCAFFOLD PARENT
         children: [
     Container(
@@ -166,6 +189,7 @@ class _MyCharacterPageState extends State<MyCharacterPage> {
               onPressed: () {
                 countdownComplete ? generateIdea() : null;
                 countdownComplete ? startTimer() : null;
+                activated = true;
               },
               child: const Text('Generate',
                 style: TextStyle(
