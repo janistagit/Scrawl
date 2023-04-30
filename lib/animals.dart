@@ -142,6 +142,7 @@ class _MyAnimalPageState extends State<MyAnimalPage> {
             const Text(
               'Draw:',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontSize: 35.0, // insert your font size here
               ),
             ),

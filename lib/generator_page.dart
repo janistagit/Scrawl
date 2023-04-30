@@ -37,6 +37,12 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
       final _random = new Random();
       String adj = adjectives[_random.nextInt(adjectives.length)];
       String noun = nouns[_random.nextInt(nouns.length)];
+      if(noun == "sex"){
+        noun = "phone";
+      }
+      if(adj == "republican" || adj == "Christian" || adj == "Islamic" || adj == "Jewish"){
+        adj == "random";
+      }
       _idea = adj + " " + noun;
     });
   }
@@ -150,13 +156,15 @@ class _MyGeneratePageState extends State<MyGeneratePage> {
             const Text(
               'Draw:',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontSize: 35.0, // insert your font size here
               ),
             ),
              Text(
               _idea,
                style: TextStyle(
-                 fontSize: 35.0, // insert your font size here
+                 fontSize: 35.0,
+                 // insert your font size here
                ),
             ),
             const SizedBox(height: 15),
