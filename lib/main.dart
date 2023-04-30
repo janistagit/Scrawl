@@ -57,22 +57,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    return Stack( // <-- STACK AS THE SCAFFOLD PARENT
+        children: [
+    Container(
+    decoration: BoxDecoration(
+    image: DecorationImage(
+        image: AssetImage("assets/scrawl_bg.png"), // <-- BACKGROUND IMAGE
+      fit: BoxFit.fitHeight,
+    ),
+    ),
+    ),
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
+     Scaffold(
+       backgroundColor: Colors.transparent, // <-- SCAFFOLD WITH TRANSPARENT BG
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
+
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
+
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -89,13 +102,16 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Scrawl',
-              style: TextStyle(
-                fontSize: 35.0, // insert your font size here
-              ),
-            ),
-            const SizedBox(height: 35),
+        Container(
+        //height: double.infinity,
+          alignment: Alignment.center, // This is needed
+          child: Image.asset(
+            "assets/scrawl_logo.png",
+            fit: BoxFit.contain,
+            width: 300,
+          ),
+        ),
+            const SizedBox(height: 5),
             FilledButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const MyGeneratePage(title: "Generator Page")));
@@ -120,6 +136,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+    ),
+    ]
     );
   }
 }
