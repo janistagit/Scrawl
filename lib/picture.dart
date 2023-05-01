@@ -107,6 +107,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
 
+
   const DisplayPictureScreen({super.key, required this.imagePath});
 
   @override
@@ -120,6 +121,12 @@ class DisplayPictureScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         alignment: Alignment.center,
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.check),
+        onPressed: () => Navigator.of(context)
+            ..pop()
+            ..pop(),
       ),
     );
   }
